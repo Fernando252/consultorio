@@ -7,10 +7,12 @@ class Abogadoadmin(admin.ModelAdmin):
 @admin.register(Abogado)
 class AbogadoAdmin(admin.ModelAdmin):
     list_display = ('nombrea', 'apellido', 'celular', 'correo','tipos_especialidad')
+    search_fields = ('apellido','tipos_especialidad')
 
 @admin.register(Clientes)
 class ClientesAdmin(admin.ModelAdmin):
     list_display = ('nombrec', 'apellido', 'direccion', 'celular', 'correo')
+    search_fields = ('nombrec', 'apellido', 'direccion', 'celular',)
 
 @admin.register(Cita)
 class CitaAdmin(admin.ModelAdmin):
