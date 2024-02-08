@@ -66,8 +66,7 @@ class Documentos(models.Model):
     tipo_documento = models.CharField(max_length=50)
     fecha_creacion = models.DateField()
     descripcion_documento = models.TextField()
-    archivo_adjunto = models.TextField(blank=False, null=False) # Puedes cambiar esto a FileField si necesitas almacenar archivos
-    otros_campos = models.CharField(max_length=255, blank=True, null=True)
+    archivo_adjunto = models.FileField(upload_to='documentos/')
 
     def __str__(self) -> str:
         return f'Documento {self.tipo_documento} para el caso {self.caso.id}'
