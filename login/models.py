@@ -1,12 +1,18 @@
 from django.db import models
 from django.utils import timezone
 class Abogado(models.Model):
+    #Eleccion de especialidad
+        ESPECIALIDAD_CHOICES=[
+      ('Penal', 'Penal'),
+      ('laboral', 'Laboral'),
+      ('Civil','Civil'),
+      ]
     # Atributos del abogado
         nombrea = models.CharField(max_length=144, blank=False, null=False)
         apellido = models.CharField(max_length=144, blank=False, null=False)
         celular = models.CharField(max_length=10, blank=False, null=False)
         correo = models.CharField(max_length=144, blank=False, null=False)
-        
+        tipos_especialidad = models.CharField(max_length=10, default='Penal', choices=ESPECIALIDAD_CHOICES)
         def __str__(self) -> str:
             return f'{self.nombrea}'
         

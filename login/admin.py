@@ -6,7 +6,7 @@ class Abogadoadmin(admin.ModelAdmin):
 
 @admin.register(Abogado)
 class AbogadoAdmin(admin.ModelAdmin):
-    list_display = ('nombrea', 'apellido', 'celular', 'correo')
+    list_display = ('nombrea', 'apellido', 'celular', 'correo','tipos_especialidad')
 
 @admin.register(Clientes)
 class ClientesAdmin(admin.ModelAdmin):
