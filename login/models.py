@@ -5,7 +5,7 @@ class Abogado(models.Model):
         nombrea = models.CharField(max_length=144, blank=False, null=False)
         apellido = models.CharField(max_length=144, blank=False, null=False)
         celular = models.CharField(max_length=10, blank=False, null=False)
-        correo = models.CharField(max_length=10, blank=False, null=False)
+        correo = models.CharField(max_length=144, blank=False, null=False)
         
         def __str__(self) -> str:
             return f'{self.nombrea}'
@@ -16,7 +16,7 @@ class Clientes(models.Model):
         apellido = models.CharField(max_length=144, blank=False, null=False)
         direccion = models.CharField(max_length=144, blank=False, null=False)
         celular = models.CharField(max_length=10, blank=False, null=False)
-        correo = models.CharField(max_length=10, blank=False, null=False)  
+        correo = models.CharField(max_length=144, blank=False, null=False)  
 
         def __str__(self) -> str:
             return f'{self.nombrec}'
@@ -33,9 +33,6 @@ class Cita(models.Model):
         def __str__(self) -> str:
             return f'Cita con {self.abogado.nombrea} el {self.fecha_cita}'
         
-
-
-      
 class Casos(models.Model):
         CASOS_CHOICES=[
       ('Penal', 'Penal'),
