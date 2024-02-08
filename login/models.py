@@ -53,3 +53,17 @@ class Casos(models.Model):
 
         def __str__(self) -> str:
             return f'El abogado {self.abogado.nombrea} trata al cliente {self.cliente.nombrec}'
+        
+class Documentos(models.Model):
+    # Atributos del documento
+    caso = models.ForeignKey(Casos, on_delete=models.CASCADE)
+    tipo_documento = models.CharField(max_length=50)
+    fecha_creacion = models.DateField()
+    descripcion_documento = models.TextField()
+    archivo_adjunto = models.TextField(blank=False, null=False) # Puedes cambiar esto a FileField si necesitas almacenar archivos
+    otros_campos = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self) -> str:
+        return f'Documento {self.tipo_documento} para el caso {self.caso.id}'
+        
+        
