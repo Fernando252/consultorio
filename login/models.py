@@ -32,27 +32,27 @@ class Cita(models.Model):
 
         def __str__(self) -> str:
             return f'Cita con {self.abogado.nombrea} el {self.fecha_cita}'
-
-CASOS_CHOICES=[
-      {'Penal', 'Penal'},
-      {'laboral', 'Laboral'},
-      {'Civil','Civil'},
-]
-
-ESTADO_CHOICES=[
-      {'Proceso', 'Proceso'},
-      {'Cerrado', 'Cerrado'},
-]
         
+
+
+      
 class Casos(models.Model):
+        CASOS_CHOICES=[
+      ('Penal', 'Penal'),
+      ('laboral', 'Laboral'),
+      ('Civil','Civil'),
+      ]
+        ESTADO_CHOICES=[
+      ('Proceso', 'Proceso'),
+      ('Cerrado', 'Cerrado'),
+      ]
     # Atributos de los casos
-        
-        abogado = models.ForeignKey(Abogado, related_name='citas', on_delete=models.CASCADE)
-        cliente = models.ForeignKey(Clientes, related_name='citas', on_delete=models.CASCADE)
-        tipos_casos = models.CharField(max_length=10, blank='penal', null=True, choices=CASOS_CHOICES)
-        Estado = models.CharField(max_length=10, blank='Proceso', null=True, choices=ESTADO_CHOICES)
+        abogado = models.ForeignKey(Abogado, related_name='casos', on_delete=models.CASCADE)
+        cliente = models.ForeignKey(Clientes, related_name='casos', on_delete=models.CASCADE)
+        tipos_casos = models.CharField(max_length=10, default='Penal', choices=CASOS_CHOICES)
+        Estado = models.CharField(max_length=10, default='Proceso', choices=ESTADO_CHOICES)
         fecha_apertura = models.DateTimeField(default=timezone.now)
         descripcion = models.TextField(blank=True, null=True)
-         
+
         def __str__(self) -> str:
             return f'El abogado {self.abogado.nombrea} trata al cliente {self.cliente.nombrec}'

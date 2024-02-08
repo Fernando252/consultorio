@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import  Abogado, Clientes, Cita
+from .models import  Abogado, Clientes, Cita, Casos
 
 class Abogadoadmin(admin.ModelAdmin):
     list_display = ('id', 'nombre')
@@ -17,3 +17,10 @@ class CitaAdmin(admin.ModelAdmin):
     list_display = ('abogado', 'cliente', 'fecha_cita', 'lugar_cita', 'descripcion', 'fecha_creacion')
     list_filter = ('abogado', 'cliente', 'fecha_cita')
     search_fields = ('abogado__nombrea', 'cliente__nombrec', 'lugar_cita', 'descripcion')
+
+class CasosAdmin(admin.ModelAdmin):
+    list_display = ('abogado', 'cliente', 'tipos_casos', 'Estado', 'fecha_apertura', 'descripcion')
+    list_filter = ('tipos_casos', 'Estado')
+    search_fields = ('abogado__nombrea', 'cliente__nombrec')
+
+admin.site.register(Casos, CasosAdmin)
