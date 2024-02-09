@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Citas por Cliente</title>
+</head>
+<body>
+
+<h1>Citas por Cliente</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Cliente</th>
+            <th>Número de Citas</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cliente in citas_por_cliente %}
+            <tr>
+                <td><a href="/cliente/{{ cliente.pk }}">{{ cliente.pk }}</a></td>
+                <td>{{ cliente.nombrec }}</td>
+                <td>{{ cliente.num_citas }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
+{% endblock %}

@@ -4,8 +4,17 @@ from rest_framework.response import Response
 from rest_framework import serializers
 
 from django.db.models import Count
-from .models import Abogado, Clientes
-from .models import Casos
+from .models import Abogado, Clientes, Cita, Casos
+from .models import Clientes, Cita
+
+def citas(request):
+    citas_por_cliente = Clientes.objects.annotate(num_citas=Count('citas'))
+    contenido = {
+        'citas_por_cliente': citas_por_cliente
+    }
+    template = "citas.html"
+    return render(request, template, contenido)
+
 
 def ver_casos(request):
     casos_por_abogado = Abogado.objects.annotate(num_casos=Count('casos'))
