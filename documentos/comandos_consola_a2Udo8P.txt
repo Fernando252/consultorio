@@ -1,0 +1,44 @@
+#ubicarse en el directorio del proyecto
+cd C:\Users\Jefferson\Documents\GitHub\django_holamundo 
+
+#crear entorno
+conda create --name entorno_holadjango_310 python=3.10
+
+#install django
+pip install Django==3.*
+
+#ver las versiones
+pip list
+
+#ver las versiones
+pip freeze
+
+#ver las versiones
+pip freeze > requirements.txt
+
+#ver las versiones
+pip install -r .\requirements.txt
+
+#crear panel admin en django
+django-admin startproject holamundo
+
+#---
+ls
+
+#situarse en el directorio
+cd holamundo
+
+#abrir visualstudio
+code .
+
+#ver comandos python
+python manage.py
+
+#migraciones
+python manage.py migrate
+
+#correr servidor
+python manage.py runserver
+
+#crear admin
+python manage.py createsuperuser

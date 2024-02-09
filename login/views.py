@@ -7,6 +7,7 @@ from django.db.models import Count
 from .models import Abogado, Clientes, Cita, Casos
 from .models import Clientes, Cita
 
+#citas
 def citas(request):
     citas_por_cliente = Clientes.objects.annotate(num_citas=Count('citas'))
     contenido = {
@@ -27,7 +28,7 @@ def citas_clientes(request,codigo_cliente):
     return render(request, template, contenido)
 
 
-
+#casos
 
 def ver_casos(request):
     casos_por_abogado = Abogado.objects.annotate(num_casos=Count('casos'))
@@ -50,7 +51,7 @@ def casos_abogado(request,codigo_abogado):
     template = "caso.html"
     return render(request, template, contenido)
 
-
+#abogados
 
 def ver_abogados(request,):
     abogados =Abogado.objects.all()
@@ -69,7 +70,7 @@ def ver_abogado(request,codigo_abogado):
     template = "abogado.html"
     return render(request, template, contenido)
 
-
+#clientes
 
 def ver_clientes(request,):
     clientes =Clientes.objects.all()
@@ -89,6 +90,6 @@ def ver_cliente(request,codigo_cliente):
     return render(request, template, contenido)
 
 from django.shortcuts import render
-
+#index
 def index(request):
     return render(request, 'index.html')
