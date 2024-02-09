@@ -11,7 +11,18 @@ def ver_abogados(request,):
         'abogados': abogados
     }
     template = "abogados.html"
+    return render(request, template, contenido)\
+    
+
+def ver_abogado(request,codigo_abogado):
+    abogados = Abogado.objects.get(pk = codigo_abogado)
+    contenido = {
+        'abogados' : abogados 
+    }
+    template = "abogado.html"
     return render(request, template, contenido)
+
+
 
 def ver_clientes(request,):
     clientes =Clientes.objects.all()
