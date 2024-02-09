@@ -21,7 +21,7 @@
     <tbody>
         {% for cliente in citas_por_cliente %}
             <tr>
-                <td><a href="/cliente/{{ cliente.pk }}">{{ cliente.pk }}</a></td>
+                <td><a href="/cita_cliente/{{ cliente.pk }}">{{ cliente.pk }}</a></td>
                 <td>{{ cliente.nombrec }}</td>
                 <td>{{ cliente.num_citas }}</td>
             </tr>

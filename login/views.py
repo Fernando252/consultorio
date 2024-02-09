@@ -16,6 +16,19 @@ def citas(request):
     return render(request, template, contenido)
 
 
+def citas_clientes(request,codigo_cliente):
+    cliente = Clientes.objects.get(pk=codigo_cliente)
+    citas_cliente = Cita.objects.filter(cliente=cliente)
+    contenido = {
+        'citas_cliente': citas_cliente,
+        'cliente': cliente,
+    }
+    template = "cita_cliente.html"
+    return render(request, template, contenido)
+
+
+
+
 def ver_casos(request):
     casos_por_abogado = Abogado.objects.annotate(num_casos=Count('casos'))
     contenido = {
