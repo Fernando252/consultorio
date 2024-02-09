@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+        <div class="card">
+                <div class="card-header">
+
+                        <h5 class="card-title">{{ cliente.nombrea }}</h5>
+        
+                </div>
+       
+                <p class="card-text"><strong>Nombre:</strong> {{ cliente.nombrec }}</p>
+                <p class="card-text"><strong>Apellido:</strong> {{ cliente.apellido }}</p>
+                <p class="card-text"><strong>Direccion:</strong> {{ cliente.direccion }}</p>
+                <p class="card-text"><strong>Celular:</strong> {{ cliente.celular }}</p>
+                <p class="card-text"><strong>Correo:</strong> {{ cliente.correo}}</p>
+
+
+
+</div>
+</div>
+        
+{% endblock %}

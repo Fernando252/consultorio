@@ -31,3 +31,11 @@ def ver_clientes(request,):
     }
     template = "clientes.html"
     return render(request, template, contenido)
+
+def ver_cliente(request,codigo_cliente):
+    cliente = Clientes.objects.get(pk = codigo_cliente)
+    contenido = {
+        'cliente' : cliente 
+    }
+    template = "cliente.html"
+    return render(request, template, contenido)
