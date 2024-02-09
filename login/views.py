@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import serializers
 
+
 from .models import Abogado, Clientes
 from .models import Casos
 
@@ -51,3 +52,8 @@ def ver_cliente(request,codigo_cliente):
     }
     template = "cliente.html"
     return render(request, template, contenido)
+
+from django.shortcuts import render
+
+def index(request):
+    return render(request, 'index.html')
