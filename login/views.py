@@ -4,6 +4,18 @@ from rest_framework.response import Response
 from rest_framework import serializers
 
 from .models import Abogado, Clientes
+from .models import Casos
+
+def ver_casos(request):
+    casos = Casos.objects.all()
+    contenido = {
+
+        'casos' : casos
+    }
+
+    template = "ver_casos.html"
+    
+    return render(request, template, contenido)
 
 def ver_abogados(request,):
     abogados =Abogado.objects.all()
