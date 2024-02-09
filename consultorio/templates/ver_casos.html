@@ -11,16 +11,16 @@
             <tr>
                 <td>Id</td>
                 <td>Abogado</td>
-                <td>Cliente</td>
-                <td>Tipo_Caso</td>
+                <td>Numero de casos</td>
+              
 
             </tr>
             {% for prop in casos %}
               <tr>
                 <td><a href = '/casos/{{prop.pk}}' > {{prop.pk}}</a></td>
-                <td>{{prop.abogado_id}} </td>
-                <td>{{prop.cliente_id}} </td>
-                <td>{{prop.tipos_casos}} </td>
+                <td>{{prop.abogado}} </td>
+                <td>{{prop.cliente}} </td>
+                
               </tr>
               {% endfor %}
         </table>
