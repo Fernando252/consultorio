@@ -8,6 +8,7 @@ class Abogado(models.Model):
       ('Civil','Civil'),
       ]
     # Atributos del abogado
+        
         nombrea = models.CharField(max_length=144, blank=False, null=False)
         apellido = models.CharField(max_length=144, blank=False, null=False)
         celular = models.CharField(max_length=10, blank=False, null=False)
