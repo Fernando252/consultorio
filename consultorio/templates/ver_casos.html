@@ -1,30 +1,26 @@
 {% extends 'base.html' %}
-{% block content %}
 
+{% block content %}
 <!DOCTYPE html>
 <html lang="es">
-    <head>
+<head>
     <title>Abogados</title>         
-    </head>
-    <body>
-        <table class="table table-striped"> 
+</head>
+<body>
+    <table class="table table-striped"> 
+        <tr>
+            <td>Id</td>
+            <td>Abogado</td>
+            <td>Numero de casos</td>
+        </tr>
+        {% for abogado in casos_por_abogado %}
             <tr>
-                <td>Id</td>
-                <td>Abogado</td>
-                <td>Numero de casos</td>
-              
-
+                <td><a href="/caso/{{ abogado.pk }}">{{ abogado.pk }}</a></td>
+                <td>{{ abogado.nombrea }}</td>
+                <td>{{ abogado.num_casos }}</td>
             </tr>
-            {% for prop in casos %}
-              <tr>
-                <td><a href = '/casos/{{prop.pk}}' > {{prop.pk}}</a></td>
-                <td>{{prop.abogado}} </td>
-                <td>{{prop.cliente}} </td>
-                
-              </tr>
-              {% endfor %}
-        </table>
-    </body>
-
+        {% endfor %}
+    </table>
+</body>
 </html>
 {% endblock %}

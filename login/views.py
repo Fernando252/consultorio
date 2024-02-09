@@ -3,20 +3,32 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import serializers
 
-
+from django.db.models import Count
 from .models import Abogado, Clientes
 from .models import Casos
 
 def ver_casos(request):
-    casos = Casos.objects.all()
+    casos_por_abogado = Abogado.objects.annotate(num_casos=Count('casos'))
     contenido = {
-
-        'casos' : casos
+        'casos_por_abogado': casos_por_abogado
     }
-
     template = "ver_casos.html"
-    
     return render(request, template, contenido)
+
+
+
+def casos_abogado(request,codigo_abogado):
+    abogado = Abogado.objects.get(pk=codigo_abogado)
+    casos_abogado = Casos.objects.filter(abogado=abogado)
+    contenido = {
+        'casos_abogado' : casos_abogado, 
+        'abogado' : abogado,
+
+    }
+    template = "caso.html"
+    return render(request, template, contenido)
+
+
 
 def ver_abogados(request,):
     abogados =Abogado.objects.all()
@@ -44,6 +56,7 @@ def ver_clientes(request,):
     }
     template = "clientes.html"
     return render(request, template, contenido)
+
 
 def ver_cliente(request,codigo_cliente):
     cliente = Clientes.objects.get(pk = codigo_cliente)
