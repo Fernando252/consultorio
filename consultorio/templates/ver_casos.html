@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <title>Abogados</title>         
+    </head>
+    <body>
+        <table class="table table-striped"> 
+            <tr>
+                <td>Id</td>
+                <td>Abogado</td>
+                <td>Numero de casos</td>
+              
+
+            </tr>
+            {% for prop in casos %}
+              <tr>
+                <td><a href = '/casos/{{prop.pk}}' > {{prop.pk}}</a></td>
+                <td>{{prop.abogado}} </td>
+                <td>{{prop.cliente}} </td>
+                
+              </tr>
+              {% endfor %}
+        </table>
+    </body>
+
+</html>
+{% endblock %}
