@@ -1,3 +1,4 @@
+from datetime import date
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
 from django.db.models import Count
@@ -176,3 +177,12 @@ from django.shortcuts import render
 #index
 def index(request):
     return render(request, 'index.html')
+
+def calendario_citas(request):
+    
+    
+    return render(request, 'agendar_cita.html',)
+
+#def reservar_cita(request):
+    # Lógica para reservar una cita
+    #return render(request, 'citas/reservar.html')
