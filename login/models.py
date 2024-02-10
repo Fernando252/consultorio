@@ -1,32 +1,65 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+
 class Abogado(models.Model):
-    #Eleccion de especialidad
-        ESPECIALIDAD_CHOICES=[
-      ('Penal', 'Penal'),
-      ('laboral', 'Laboral'),
-      ('Civil','Civil'),
-      ]
-    # Atributos del abogado
+    ESPECIALIDAD_CHOICES = [
+        ('Penal', 'Penal'),
+        ('Laboral', 'Laboral'),
+        ('Civil', 'Civil'),
+    ]
+    cedula = models.CharField(max_length=12, blank=False, null=True, default='')
+    nombrea = models.CharField(max_length=144, blank=False, null=False)
+    apellido = models.CharField(max_length=144, blank=False, null=False)
+    celular = models.CharField(max_length=10, blank=False, null=False)
+    correo = models.CharField(max_length=144, blank=False, null=False)
+    tipos_especialidad = models.CharField(max_length=10, default='Penal', choices=ESPECIALIDAD_CHOICES)
+    
+    # Nuevos campos para el usuario
+    usuario = models.CharField(max_length=30, unique=True)
+    contraseña = models.CharField(max_length=128, default=make_password('default_password'))
+
+
+    def __str__(self) -> str:
+        return f'{self.nombrea}'
+
+    # Override del método save para registrar usuario y contraseña al crear una instancia
+    def save(self, *args, **kwargs):
+        # Crea un usuario con el mismo nombre de usuario y asigna la contraseña cifrada
+        user = User.objects.create(username=self.usuario, password=make_password(self.contraseña))
+        self.usuario = user.username  # Actualiza el campo 'usuario' con el nombre de usuario real
+        self.contraseña = user.password  # Actualiza el campo 'contraseña' con la contraseña cifrada
+        super().save(*args, **kwargs)
         
-        nombrea = models.CharField(max_length=144, blank=False, null=False)
-        apellido = models.CharField(max_length=144, blank=False, null=False)
-        celular = models.CharField(max_length=10, blank=False, null=False)
-        correo = models.CharField(max_length=144, blank=False, null=False)
-        tipos_especialidad = models.CharField(max_length=10, default='Penal', choices=ESPECIALIDAD_CHOICES)
-        def __str__(self) -> str:
-            return f'{self.nombrea}'
-        
+
+
 class Clientes(models.Model):
     # Atributos del cliente
-        nombrec = models.CharField(max_length=144, blank=False, null=False)
-        apellido = models.CharField(max_length=144, blank=False, null=False)
-        direccion = models.CharField(max_length=144, blank=False, null=False)
-        celular = models.CharField(max_length=10, blank=False, null=False)
-        correo = models.CharField(max_length=144, blank=False, null=False)  
+    cedula = models.CharField(max_length=12, blank=False, null=True, default='')
+    nombrec = models.CharField(max_length=144, blank=False, null=False)
+    apellido = models.CharField(max_length=144, blank=False, null=False)
+    direccion = models.CharField(max_length=144, blank=False, null=False)
+    celular = models.CharField(max_length=10, blank=False, null=False)
+    correo = models.CharField(max_length=144, blank=False, null=False)  
 
-        def __str__(self) -> str:
-            return f'{self.nombrec}'
+    # Nuevos campos para el usuario
+    usuario = models.CharField(max_length=30, unique=True, default='default_username')
+    contraseña = models.CharField(max_length=128, default=make_password('default_password'))
+
+    def __str__(self) -> str:
+        return f'{self.nombrec}'
+
+    # Override del método save para registrar usuario y contraseña al crear una instancia
+    def save(self, *args, **kwargs):
+        # Crea un usuario con el mismo nombre de usuario y asigna la contraseña cifrada
+        user = User.objects.create(username=self.usuario, password=make_password(self.contraseña))
+        self.usuario = user.username  # Actualiza el campo 'usuario' con el nombre de usuario real
+        self.contraseña = user.password  # Actualiza el campo 'contraseña' con la contraseña cifrada
+        super().save(*args, **kwargs)
+
+
+
 
 class Cita(models.Model):
     # Atributos de la cita

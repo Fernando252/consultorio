@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Cliente</title>
+    <!-- Agrega los enlaces a los estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Registro de Cliente</h2>
+        
+        <form method="post" action="{% url 'registro_cliente' %}">
+            {% csrf_token %}
+            
+            <!-- Agrega clases de Bootstrap a los elementos del formulario -->
+            <div class="form-group">
+                <label for="cedula">Cédula:</label>
+                <input type="text" class="form-control" id="cedula" name="cedula" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nombrec">Nombre:</label>
+                <input type="text" class="form-control" id="nombrec" name="nombrec" required>
+            </div>
+
+            <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" required>
+            </div>
+
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" required>
+            </div>
+
+            <div class="form-group">
+                <label for="celular">Celular:</label>
+                <input type="text" class="form-control" id="celular" name="celular" required>
+            </div>
+
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <input type="email" class="form-control" id="correo" name="correo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="usuario">Usuario:</label>
+                <input type="text" class="form-control" id="usuario" name="usuario" required>
+            </div>
+
+            <div class="form-group">
+                <label for="contraseña">Contraseña:</label>
+                <input type="password" class="form-control" id="contraseña" name="contraseña" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+    </div>
+
+    <!-- Agrega los scripts de Bootstrap (jQuery primero, luego Popper.js, y finalmente Bootstrap JS) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
