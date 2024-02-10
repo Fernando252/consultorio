@@ -18,6 +18,8 @@ from django.urls import path
 from login.views import registrar_cita, ver_abogados, ver_clientes,ver_abogado,ver_cliente, index,ver_casos,casos_abogado,citas,citas_clientes,registro_abogado, registro_cliente, login_cliente
 
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', login_cliente, name='inicio'),
@@ -41,8 +43,6 @@ urlpatterns = [
 
     path('citas/', citas),
     path('cita_cliente/<int:codigo_cliente>/', citas_clientes, name="detalle_citas"),
-
-   
 
 
 ]

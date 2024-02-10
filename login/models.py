@@ -75,6 +75,8 @@ class Cita(models.Model):
 
 
         
+
+        
 class Casos(models.Model):
         CASOS_CHOICES=[
       ('Penal', 'Penal'),
@@ -107,4 +109,5 @@ class Documentos(models.Model):
     def __str__(self) -> str:
         return f'Documento {self.tipo_documento} para el caso {self.caso.id}'
         
+
         

@@ -1,3 +1,4 @@
+from datetime import date
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
 from django.db.models import Count
@@ -188,3 +189,6 @@ def registrar_cita(request):
         form = CitaForm()
 
     return render(request, 'registrar_cita.html', {'form': form})
+def calendario_citas(request):
+    return render(request, 'agendar_cita.html',)
+
