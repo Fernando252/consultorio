@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
+from bootstrap_datepicker_plus.widgets import DateTimePickerInput
+
 
 class Abogado(models.Model):
     ESPECIALIDAD_CHOICES = [
@@ -60,18 +62,18 @@ class Clientes(models.Model):
 
 
 
-
 class Cita(models.Model):
-    # Atributos de la cita
-        abogado = models.ForeignKey(Abogado, related_name='citas', on_delete=models.CASCADE)
-        cliente = models.ForeignKey(Clientes, related_name='citas', on_delete=models.CASCADE)
-        fecha_cita = models.DateTimeField()
-        lugar_cita = models.CharField(max_length=255, blank=True, null=True)
-        descripcion = models.TextField(blank=True, null=True)
-        fecha_creacion = models.DateTimeField(default=timezone.now)   
+    abogado = models.ForeignKey(Abogado, related_name='citas', on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Clientes, related_name='citas', on_delete=models.CASCADE)
+    fecha_cita = models.DateTimeField()
+    lugar_cita = models.CharField(max_length=255, blank=True, null=True)
+    descripcion = models.TextField(blank=True, null=True)
+    fecha_creacion = models.DateTimeField(default=timezone.now)
+    def __str__(self) -> str:
+        return f'Cita con {self.abogado.nombrea} el {self.fecha_cita}'
+        
 
-        def __str__(self) -> str:
-            return f'Cita con {self.abogado.nombrea} el {self.fecha_cita}'
+
         
 class Casos(models.Model):
         CASOS_CHOICES=[

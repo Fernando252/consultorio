@@ -2,22 +2,57 @@
 <html lang="en">
 
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Página de Inicio</title>
-    
+
+    <!-- Enlaces a los estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
-<body>
-    <h1>Bienvenido a la Página de Inicio</h1>
-    <ul>
-        <li><a href="abogados">Ir a la Lista de Abogados</a></li>
-        <li><a href="clientes">Ir a la Lista de Clientes</a></li>`
-        <li><a href="ver_casos">Ir a la Lista de Casos</a></li>
-        <li><a href="citas">Ir a la Lista de Citas</a></li>
-        <!-- Agrega otros enlaces según tus necesidades -->
-    </ul>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="text-center">Bienvenido a la Página de Inicio</h1>
+        
+        <div class="card-deck mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Lista de Abogados</h5>
+                    <p class="card-text">Explora la lista de abogados registrados.</p>
+                    <a href="abogados" class="btn btn-primary">Ir</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Lista de Clientes</h5>
+                    <p class="card-text">Descubre la lista de clientes registrados.</p>
+                    <a href="clientes" class="btn btn-primary">Ir</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Lista de Casos</h5>
+                    <p class="card-text">Consulta la lista de casos atendidos por los abogados.</p>
+                    <a href="ver_casos" class="btn btn-primary">Ir</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Lista de Citas</h5>
+                    <p class="card-text">Revisa la lista de citas programadas.</p>
+                    <a href="citas" class="btn btn-primary">Ir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts de Bootstrap (jQuery primero, luego Popper.js, y finalmente Bootstrap JS) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

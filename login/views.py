@@ -2,10 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
 from django.db.models import Count
 from .models import Abogado, Clientes, Cita, Casos
-from .models import Clientes, Cita
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-
+from .forms import CitaForm
 
 def registro_abogado(request):
     ESPECIALIDAD_CHOICES = Abogado.ESPECIALIDAD_CHOICES
@@ -64,7 +63,7 @@ def registro_cliente(request):
         )
 
         # Realiza cualquier otra acción o redirige a una página específica
-        return redirect('index.html')  # Cambia 'index.html' con la URL deseada
+        return redirect('index')  # Cambia 'index.html' con la URL deseada
 
     return render(request, 'registro_cliente.html')
 
@@ -82,7 +81,7 @@ def login_cliente(request):
             # Inicia sesión si la autenticación es exitosa
             login(request, user)
             messages.success(request, 'Inicio de sesión exitoso.')
-            return redirect('index.html')  # Cambia 'index.html' con la URL deseada
+            return redirect('index')  # Cambia 'index' con el nombre de la URL de la página de index
         else:
             # Muestra un mensaje de error si la autenticación falla
             messages.error(request, 'Credenciales incorrectas.')
@@ -175,4 +174,17 @@ def ver_cliente(request,codigo_cliente):
 from django.shortcuts import render
 #index
 def index(request):
+    
     return render(request, 'index.html')
+
+def registrar_cita(request):
+    if request.method == 'POST':
+        form = CitaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Realiza cualquier acción adicional o redirige a otra página
+            return redirect('index')  # Cambia 'index' con la URL deseada
+    else:
+        form = CitaForm()
+
+    return render(request, 'registrar_cita.html', {'form': form})

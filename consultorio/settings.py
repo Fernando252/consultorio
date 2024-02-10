@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap_datepicker_plus',
     'login'
      
 ]
@@ -133,3 +134,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
+DATE_INPUT_FORMATS = ['%d/%m/%Y']

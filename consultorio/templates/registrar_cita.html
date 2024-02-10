@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Registro de Citas</title>
+
+    <!-- Enlaces a los estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Asegúrate de cargar jQuery antes de los scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <!-- Enlace al widget DateTimePicker -->
+    {{ form.media.css }}
+    {{ form.media.js }}
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Registro de Citas</h1>
+
+        <form method="post" action="{% url 'registrar_cita' %}">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-primary">Guardar Cita</button>
+        </form>
+    </div>
+
+    <!-- Scripts de Bootstrap (Popper.js y Bootstrap JS) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
