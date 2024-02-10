@@ -12,6 +12,12 @@
 
     <!-- Asegúrate de cargar jQuery antes de los scripts de Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <style>
+        .card {
+          margin-top: 20px;
+          margin-bottom: 20px; 
+        }
+      </style>
 
     <!-- Enlace al widget DateTimePicker -->
     {{ form.media.css }}
@@ -19,18 +25,31 @@
 </head>
 
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">Registro de Citas</h1>
 
         <form method="post" action="{% url 'registrar_cita' %}">
-            {% csrf_token %}
+ 
+    <div class="container">
+        <div class="row justify-content-center">
+        <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header">
+                <h2>Ingrese sus datos</h2>
+            </div>
+            <div class="card-body">
+            <h5 class="card-title">Registro de Citas</h5>
+            <p class="card-text">
+                {% csrf_token %}
             
-            {{ form.as_p }}
+                {{ form.as_p }}
 
-            <button type="submit" class="btn btn-primary">Guardar Cita</button>
-        </form>
-    </div>
-
+            </p>
+            <a type="submit" href="login_cliente.html" class="btn btn-primary">Registrar</a>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </form>
     <!-- Scripts de Bootstrap (Popper.js y Bootstrap JS) -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
