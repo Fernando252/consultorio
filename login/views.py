@@ -172,11 +172,12 @@ def ver_cliente(request,codigo_cliente):
     template = "cliente.html"
     return render(request, template, contenido)
 
-from django.shortcuts import render
-#index
+
 def index(request):
     
     return render(request, 'index.html')
+
+
 
 def registrar_cita(request):
     if request.method == 'POST':
@@ -189,6 +190,4 @@ def registrar_cita(request):
         form = CitaForm()
 
     return render(request, 'registrar_cita.html', {'form': form})
-def calendario_citas(request):
-    return render(request, 'agendar_cita.html',)
 

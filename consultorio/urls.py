@@ -24,13 +24,20 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', login_cliente, name='inicio'),
     path('login_cliente/', login_cliente, name='login_cliente'),
-    path('index/', index, name='index'),
     
+    path('index/', index, name='index'),
+
+  path('registrar_cita/', registrar_cita, name='registrar_cita'),
+
     path('registro_cliente/', registro_cliente, name='registro_cliente'),
     path('registro_abogado/', registro_abogado, name='registro_abogado'),
     
-    path('registrar_cita/', registrar_cita, name='registrar_cita'),
+ 
     
+
+
+
+
 
     path('abogados/', ver_abogados),
     path('abogado/<int:codigo_abogado>/', ver_abogado, name="detalle_abogados"),
