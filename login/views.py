@@ -33,7 +33,7 @@ def registro_abogado(request):
         )
         
         # Realizar cualquier otra acción o redirigir a una página específica
-        return redirect('index.html')  # Cambia 'pagina_de_exito' con la URL deseada
+        return redirect('index.html')  
     return render(request, 'registro_abogado.html', {'ESPECIALIDAD_CHOICES': ESPECIALIDAD_CHOICES})
 
 # registo cliente
@@ -63,8 +63,8 @@ def registro_cliente(request):
             contraseña=contraseña_cifrada,
         )
 
-        # Realiza cualquier otra acción o redirige a una página específica
-        return redirect('index')  # Cambia 'index.html' con la URL deseada
+        
+        return redirect('index') 
 
     return render(request, 'registro_cliente.html')
 
@@ -75,16 +75,15 @@ def login_cliente(request):
         usuario = request.POST['usuario']
         contraseña = request.POST['contraseña']
 
-        # Autentica al usuario
         user = authenticate(request, username=usuario, password=contraseña)
 
         if user is not None:
-            # Inicia sesión si la autenticación es exitosa
+          
             login(request, user)
             messages.success(request, 'Inicio de sesión exitoso.')
-            return redirect('index')  # Cambia 'index' con el nombre de la URL de la página de index
+            return redirect('index') 
         else:
-            # Muestra un mensaje de error si la autenticación falla
+           
             messages.error(request, 'Credenciales incorrectas.')
 
     return render(request, 'login_cliente.html')
@@ -177,17 +176,16 @@ def index(request):
     
     return render(request, 'index.html')
 
-
-
 def registrar_cita(request):
     if request.method == 'POST':
         form = CitaForm(request.POST)
         if form.is_valid():
             form.save()
-            # Realiza cualquier acción adicional o redirige a otra página
-            return redirect('index')  # Cambia 'index' con la URL deseada
+            return redirect('index')  # Cambia 'index' con el nombre de tu vista principal
     else:
         form = CitaForm()
 
-    return render(request, 'registrar_cita.html', {'form': form})
+    abogados = Abogado.objects.all()
+    clientes = Clientes.objects.all()
 
+    return render(request, 'registrar_cita.html', {'form': form, 'abogados': abogados, 'clientes': clientes})

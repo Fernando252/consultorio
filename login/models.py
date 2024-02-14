@@ -26,12 +26,11 @@ class Abogado(models.Model):
     def __str__(self) -> str:
         return f'{self.nombrea}'
 
-    # Override del método save para registrar usuario y contraseña al crear una instancia
+ 
     def save(self, *args, **kwargs):
-        # Crea un usuario con el mismo nombre de usuario y asigna la contraseña cifrada
         user = User.objects.create(username=self.usuario, password=make_password(self.contraseña))
-        self.usuario = user.username  # Actualiza el campo 'usuario' con el nombre de usuario real
-        self.contraseña = user.password  # Actualiza el campo 'contraseña' con la contraseña cifrada
+        self.usuario = user.username  
+        self.contraseña = user.password 
         super().save(*args, **kwargs)
         
 
@@ -52,12 +51,11 @@ class Clientes(models.Model):
     def __str__(self) -> str:
         return f'{self.nombrec}'
 
-    # Override del método save para registrar usuario y contraseña al crear una instancia
     def save(self, *args, **kwargs):
-        # Crea un usuario con el mismo nombre de usuario y asigna la contraseña cifrada
+ 
         user = User.objects.create(username=self.usuario, password=make_password(self.contraseña))
-        self.usuario = user.username  # Actualiza el campo 'usuario' con el nombre de usuario real
-        self.contraseña = user.password  # Actualiza el campo 'contraseña' con la contraseña cifrada
+        self.usuario = user.username  
+        self.contraseña = user.password  
         super().save(*args, **kwargs)
 
 

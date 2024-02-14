@@ -27,7 +27,7 @@ urlpatterns = [
     
     path('index/', index, name='index'),
 
-  path('registrar_cita/', registrar_cita, name='registrar_cita'),
+    path('registrar_cita/', registrar_cita, name='registrar_cita'),
 
     path('registro_cliente/', registro_cliente, name='registro_cliente'),
     path('registro_abogado/', registro_abogado, name='registro_abogado'),
