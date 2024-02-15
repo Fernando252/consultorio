@@ -45,7 +45,7 @@ def registro_cliente(request):
             cliente = form.save(commit=False)
             cliente.contraseña = make_password(form.cleaned_data['contraseña'])
             cliente.save()
-            return redirect('login_cliente.html')  # Cambia 'login_cliente.html' con la URL correcta
+            return redirect('login_cliente')  # Cambia 'login_cliente.html' con la URL correcta
     else:
         form = RegistroClienteForm()
 
