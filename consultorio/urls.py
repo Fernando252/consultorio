@@ -33,7 +33,7 @@ urlpatterns = [
 
      path('subir_documento/', subir_documento, name='subir_documento'),
 
-    path('ver_casos/', ver_casos),
+    path('ver_casos/', ver_casos, name='ver_casos'),
     path('caso/<int:codigo_abogado>/', casos_abogado, name="detalle_casos"),
     
     path('citas/', citas,name="citas"),
