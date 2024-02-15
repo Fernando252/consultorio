@@ -70,11 +70,7 @@ class Cita(models.Model):
     def __str__(self) -> str:
         return f'Cita con {self.abogado.nombrea} el {self.fecha_cita}'
         
-
-
-        
-
-        
+   
 class Casos(models.Model):
         CASOS_CHOICES=[
       ('Penal', 'Penal'),

@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap_datepicker_plus',
-    'login'
+    'login',
+  
+
+
      
 ]
 
@@ -120,11 +123,30 @@ USE_L10N = True
 
 USE_TZ = True
 
+import os
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
+# Otras configuraciones de Django...
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Configuración de archivos estáticos
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'consultorio\static'),
+ 
+]
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -139,3 +161,14 @@ BOOTSTRAP4 = {
     'include_jquery': True,
 }
 DATE_INPUT_FORMATS = ['%d/%m/%Y']
+
+STATICFILES_FINDERS: {
+'djangobower.finders.BowerFinder',
+}
+
+BOWER_COMPONENTS_ROOT = 'Users/Jonathan/Documents/git/consultorio_abogados/consultorio'
+BOWER_INSTALLED_APPS = (
+    'jquery',
+    'jquery-ui',
+    'bootstrap'
+)

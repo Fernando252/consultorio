@@ -5,6 +5,8 @@ from .models import Abogado, Casos, Clientes,Cita
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import CitaForm, DocumentoForm, RegistroClienteForm
+from django.views.generic import ListView
+
 
 
 
@@ -141,6 +143,7 @@ def citas(request):
     template = "cita_general.html"
     return render(request, template, contenido)
 
+
 def citas_clientes(request,codigo_cliente):
     cliente = Clientes.objects.get(pk=codigo_cliente)
     citas_cliente = Cita.objects.filter(cliente=cliente)
@@ -150,3 +153,12 @@ def citas_clientes(request,codigo_cliente):
     }
     template = "cita_cliente.html"
     return render(request, template, contenido)
+
+#calendario de citas
+
+class CitaListView(ListView):
+    model = Cita
+    template_name = 'cita_list.html'
+
+    def get_queryset(self):
+        return Cita.objects.all()
