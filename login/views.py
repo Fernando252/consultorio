@@ -5,9 +5,8 @@ from django.db.models import Count
 from .models import Abogado, Clientes, Cita, Casos
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .forms import CitaForm, DocumentoForm
-from django.contrib.auth.decorators import login_required
-from django import forms
+from .forms import CitaForm, DocumentoForm, RegistroClienteForm
+
 
 def registro_abogado(request):
     ESPECIALIDAD_CHOICES = Abogado.ESPECIALIDAD_CHOICES
@@ -41,35 +40,16 @@ def registro_abogado(request):
 # registo cliente
 def registro_cliente(request):
     if request.method == 'POST':
-        cedula = request.POST['cedula']
-        nombrec = request.POST['nombrec']
-        apellido = request.POST['apellido']
-        direccion = request.POST['direccion']
-        celular = request.POST['celular']
-        correo = request.POST['correo']
-        usuario = request.POST['usuario']
-        contraseña = request.POST['contraseña']
+        form = RegistroClienteForm(request.POST)
+        if form.is_valid():
+            cliente = form.save(commit=False)
+            cliente.contraseña = make_password(form.cleaned_data['contraseña'])
+            cliente.save()
+            return redirect('login_cliente.html')  # Cambia 'login_cliente.html' con la URL correcta
+    else:
+        form = RegistroClienteForm()
 
-        # Cifra la contraseña antes de almacenarla
-        contraseña_cifrada = make_password(contraseña)
-
-        # Crea una instancia de Clientes y guárdala en la base de datos
-        cliente = Clientes.objects.create(
-            cedula=cedula,
-            nombrec=nombrec,
-            apellido=apellido,
-            direccion=direccion,
-            celular=celular,
-            correo=correo,
-            usuario=usuario,
-            contraseña=contraseña_cifrada,
-        )
-
-        
-        return redirect('index') 
-
-    return render(request, 'registro_cliente.html')
-
+    return render(request, 'registro_cliente.html', {'form': form})
 
 
 def login_cliente(request):
@@ -129,7 +109,7 @@ def registrar_cita(request):
         form = CitaForm(request.POST)
         if form.is_valid():
             nueva_cita = form.save(commit=False)
-            form.instance.cliente = request.user.clientes 
+            
             nueva_cita.save()
             return redirect('index')  # Cambia 'index' con el nombre de tu vista principal
     else:
@@ -137,8 +117,6 @@ def registrar_cita(request):
 
     abogados = Abogado.objects.all()
     clientes = Abogado.objects.all()
-
-
     return render(request, 'registrar_cita.html', {'form': form, 'abogados': abogados, 'clientes': clientes})
 
 

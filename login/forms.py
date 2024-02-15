@@ -1,6 +1,25 @@
 from django import forms
 from bootstrap_datepicker_plus.widgets import DateTimePickerInput
-from .models import Cita, Documentos
+from .models import Cita, Documentos, Clientes
+
+
+class RegistroClienteForm(forms.ModelForm):
+   contraseña = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+   class Meta:
+        model = Clientes
+        fields = ['cedula', 'nombrec', 'apellido', 'direccion', 'celular', 'correo', 'usuario', 'contraseña']
+        widgets = {
+            'cedula': forms.TextInput(attrs={'class': 'form-control'}),
+            'nombrec': forms.TextInput(attrs={'class': 'form-control'}),
+            'apellido': forms.TextInput(attrs={'class': 'form-control'}),
+            'direccion': forms.TextInput(attrs={'class': 'form-control'}),
+            'celular': forms.TextInput(attrs={'class': 'form-control'}),
+            'correo': forms.TextInput(attrs={'class': 'form-control'}),
+            'usuario': forms.TextInput(attrs={'class': 'form-control'}),
+           
+
+        }
+        
 
 class CitaForm(forms.ModelForm):
     class Meta:
