@@ -5,7 +5,9 @@ from django.db.models import Count
 from .models import Abogado, Clientes, Cita, Casos
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .forms import CitaForm
+from .forms import CitaForm, DocumentoForm
+from django.contrib.auth.decorators import login_required
+from django import forms
 
 def registro_abogado(request):
     ESPECIALIDAD_CHOICES = Abogado.ESPECIALIDAD_CHOICES
@@ -90,24 +92,6 @@ def login_cliente(request):
 
 #citas
 
-def citas(request):
-    citas_por_cliente = Clientes.objects.annotate(num_citas=Count('citas'))
-    contenido = {
-        'citas_por_cliente': citas_por_cliente
-    }
-    template = "citas.html"
-    return render(request, template, contenido)
-
-
-def citas_clientes(request,codigo_cliente):
-    cliente = Clientes.objects.get(pk=codigo_cliente)
-    citas_cliente = Cita.objects.filter(cliente=cliente)
-    contenido = {
-        'citas_cliente': citas_cliente,
-        'cliente': cliente,
-    }
-    template = "cita_cliente.html"
-    return render(request, template, contenido)
 
 
 #casos
@@ -135,57 +119,38 @@ def casos_abogado(request,codigo_abogado):
 
 #abogados
 
-def ver_abogados(request,):
-    abogados =Abogado.objects.all()
-    contenido = {
-        'abogados': abogados
-    }
-    template = "abogados.html"
-    return render(request, template, contenido)\
-    
-
-def ver_abogado(request,codigo_abogado):
-    abogados = Abogado.objects.get(pk = codigo_abogado)
-    contenido = {
-        'abogados' : abogados 
-    }
-    template = "abogado.html"
-    return render(request, template, contenido)
-
-#clientes
-
-def ver_clientes(request,):
-    clientes =Clientes.objects.all()
-    contenido = {
-        'clientes': clientes
-    }
-    template = "clientes.html"
-    return render(request, template, contenido)
-
-
-def ver_cliente(request,codigo_cliente):
-    cliente = Clientes.objects.get(pk = codigo_cliente)
-    contenido = {
-        'cliente' : cliente 
-    }
-    template = "cliente.html"
-    return render(request, template, contenido)
-
-
 def index(request):
     
     return render(request, 'index.html')
+
 
 def registrar_cita(request):
     if request.method == 'POST':
         form = CitaForm(request.POST)
         if form.is_valid():
-            form.save()
+            nueva_cita = form.save(commit=False)
+            form.instance.cliente = request.user.clientes 
+            nueva_cita.save()
             return redirect('index')  # Cambia 'index' con el nombre de tu vista principal
     else:
         form = CitaForm()
 
     abogados = Abogado.objects.all()
-    clientes = Clientes.objects.all()
+    clientes = Abogado.objects.all()
+
 
     return render(request, 'registrar_cita.html', {'form': form, 'abogados': abogados, 'clientes': clientes})
+
+
+
+
+def subir_documento(request):
+    if request.method == 'POST':
+        form = DocumentoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('index.html')
+    else:
+        form = DocumentoForm()
+
+    return render(request, 'subir_documento.html', {'form': form})
