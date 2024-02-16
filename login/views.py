@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import CitaForm, DocumentoForm, RegistroClienteForm
 from django.views.generic import ListView
+from django.http import JsonResponse
 
 
 
@@ -159,6 +160,3 @@ def citas_clientes(request,codigo_cliente):
 class CitaListView(ListView):
     model = Cita
     template_name = 'cita_list.html'
-
-    def get_queryset(self):
-        return Cita.objects.all()

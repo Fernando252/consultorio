@@ -28,6 +28,8 @@ urlpatterns = [
 
     path('citas/', CitaListView.as_view(), name='citas_list'),
 
+
+
     path('registrar_cita/', registrar_cita, name='registrar_cita'),
 
 

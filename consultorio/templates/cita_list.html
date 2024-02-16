@@ -27,26 +27,24 @@
 <body>
     <div id='calendar'></div>
 
+ 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var calendarUI = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarUI, {
-      
-    
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
                 events: [
                     {% for cita in object_list %}
                         {
-                            title: '{{ cita.abogado.nombre }}',
-                            start: '{{ cita.fecha_cita| date:"Y-m-d\TH:i:s" }}}',
-                            description: '{{ cita.descripcion }}',
-                    },
-                         {% endfor %}
+                            title: '{{ cita.abogado.nombrea }}',
+                            start: '{{ cita.fecha_cita|date:"Y-m-d\TH:i:s" }}',
+                            description: '{{ cita.descripcion }}'
+                        }{% if not forloop.last %},{% endif %}
+                    {% endfor %}
                 ],
             });
             calendar.render();
         });
     </script>
-
 </body>
-
 </html>
