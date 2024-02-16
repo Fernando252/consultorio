@@ -2,7 +2,6 @@ from django import forms
 from bootstrap_datepicker_plus.widgets import DateTimePickerInput
 from .models import Cita, Documentos, Clientes
 
-
 class RegistroClienteForm(forms.ModelForm):
    contraseña = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
    class Meta:
@@ -20,7 +19,6 @@ class RegistroClienteForm(forms.ModelForm):
 
         }
         
-
 class CitaForm(forms.ModelForm):
     class Meta:
         model = Cita
@@ -33,7 +31,6 @@ class CitaForm(forms.ModelForm):
             'descripcion': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
-   
 
 class DocumentoForm(forms.ModelForm):
     class Meta:
@@ -45,3 +42,8 @@ class DocumentoForm(forms.ModelForm):
             'descripcion_documento': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'archivo_adjunto': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
+class CitaForm1(forms.ModelForm):
+    class Meta:
+        model = Cita
+        fields = ['abogado', 'cliente', 'fecha_cita', 'lugar_cita', 'descripcion']
+

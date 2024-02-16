@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.hashers import make_password
 from django.db.models import Count
 from .models import Abogado, Casos, Clientes,Cita
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .forms import CitaForm, DocumentoForm, RegistroClienteForm
+from .forms import CitaForm, DocumentoForm, RegistroClienteForm, CitaForm1
 from django.views.generic import ListView
 from django.http import JsonResponse
 
@@ -137,9 +137,10 @@ def subir_documento(request):
 
 
 def citas(request):
-    citas_por_cliente = Clientes.objects.annotate(num_citas=Count('citas'))
+    
+    citas = Cita.objects.all()
     contenido = {
-        'citas_por_cliente': citas_por_cliente
+        'citas' : citas
     }
     template = "cita_general.html"
     return render(request, template, contenido)
@@ -154,6 +155,31 @@ def citas_clientes(request,codigo_cliente):
     }
     template = "cita_cliente.html"
     return render(request, template, contenido)
+
+def nueva_cita(request):
+    contenido = {}
+    if request.method == 'POST':
+        contenido ['form'] = CitaForm(request.POST or None)
+        if contenido ['form'].is_valid():
+            contenido ['form'].save()
+            return redirect('citas_t')
+
+    contenido ['instancia_cita'] = Cita()
+    contenido ['form'] = CitaForm(
+        request.POST or None,
+        instance = contenido['instancia_cita']
+    )
+    template = 'registrar_cita1.html'
+    return render(request, template, contenido)
+
+def eliminar_cita(request, codigo_cita):
+    c = {}
+    c['cita'] =  get_object_or_404(Cita, pk=codigo_cita)
+    c['cita'].es_activo = False
+    c['cita'].save()
+    return redirect('citas_t')
+ 
+
 
 #calendario de citas
 

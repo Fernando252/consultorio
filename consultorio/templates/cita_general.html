@@ -7,27 +7,39 @@
     <title>Citas por Cliente</title>
 </head>
 <body>
+    <div class="row">
+        <div class="col-sm-8">
+            <h1>Tus Citas Agendas son:</h1>
+        </div>
+        <div class="col-sm-4">
+            <a href="{% url 'registrar_cita1' %}" class="btn btn-primary">Registrar Cita</a>
+        </div>
+    </div>
 
-<h1>Citas por Cliente</h1>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Cliente</th>
-            <th>Número de Citas</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for cliente in citas_por_cliente %}
+<div>
+    <table class="table">
+        <thead class="table-light">
             <tr>
-                <td><a href="/cita_cliente/{{ cliente.pk }}">{{ cliente.pk }}</a></td>
-                <td>{{ cliente.nombrec }}</td>
-                <td>{{ cliente.num_citas }}</td>
+                <th scope="col">Abogado</th>
+                <th scope="col">Fecha de Cita</th>
+                <th scope="col">Opciones</th>
             </tr>
+        </thead>
+        {% for cita in citas %}
+        <tbody>
+            <tr>
+                <td>{{cita.abogado}}</td>
+                <td>{{cita.fecha_cita}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary"> modificar</button>
+                    <button button type="button" class="btn btn-danger" href = '{{cita.pk}}'>eliminar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
         {% endfor %}
-    </tbody>
-</table>
+    </table>
+</div>
 
 </body>
 </html>

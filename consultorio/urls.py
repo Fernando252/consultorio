@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from login.views import CitaListView,registrar_cita,index, ver_casos,casos_abogado,registro_abogado, registro_cliente, login_cliente, subir_documento,citas,citas_clientes
+from login.views import CitaListView,registrar_cita,index, ver_casos,casos_abogado,registro_abogado, registro_cliente, login_cliente, subir_documento,citas,citas_clientes, nueva_cita, eliminar_cita
 
 
 
@@ -32,6 +32,10 @@ urlpatterns = [
 
     path('registrar_cita/', registrar_cita, name='registrar_cita'),
 
+    path('registrar_cita1/', nueva_cita, name='registrar_cita1'),
+
+    path('eliminar_cita/<int:codigo_cita>', eliminar_cita, name='eliminar'),
+
 
     path('registro_cliente/', registro_cliente, name='registro_cliente'),
     path('registro_abogado/', registro_abogado, name='registro_abogado'),
@@ -41,9 +45,10 @@ urlpatterns = [
     path('ver_casos/', ver_casos, name='ver_casos'),
     path('caso/<int:codigo_abogado>/', casos_abogado, name="detalle_casos"),
     
-    path('citas/', citas,name="citas"),
+    path('citas_t/', citas,name="citas_t"),
+
     path('cita_cliente/<int:codigo_cliente>/', citas_clientes, name="detalle_citas"),
    
- 
+    
 
 ]

@@ -9,8 +9,8 @@
 <body>
     <h1>Detalles del Cliente: {{ cliente.nombrec }}</h1>
 
-    <table class="table table-striped"> 
-        <tr>
+    <table class="table"> 
+        <thead class="table-light">
             <td>Id</td>
             <td>abogado</td>
             <td>Fecha de Cita</td>
@@ -18,9 +18,9 @@
             <td>lugar_cita</td>
             <td>Descripción</td>
             <!-- Agrega más columnas según tus necesidades -->
-        </tr>
+        </thead>
         {% for cita in citas_cliente %}
-            <tr>
+        <tbody>    
                 <td><a href="/cita/{{ cita.pk }}">{{ cita.pk }}</a></td>
                 <td>{{ cita.abogado }}</td>
                 <td>{{ cita.fecha_cita }}</td>
@@ -28,7 +28,7 @@
                 <td>{{ cita.lugar_cita}}</td>
                 <td>{{ cita.descripcion }}</td>
                 <!-- Agrega más celdas según los campos de tu modelo Cita -->
-            </tr>
+        </tbody>    
         {% endfor %}
     </table>
 </body>
