@@ -159,6 +159,7 @@ def citas_clientes(request,codigo_cliente):
     template = "cita_cliente.html"
     return render(request, template, contenido)
 
+
 def nueva_cita(request):
     contenido = {}
     if request.method == 'POST':
@@ -175,13 +176,21 @@ def nueva_cita(request):
     template = 'registrar_cita1.html'
     return render(request, template, contenido)
 
+
 def eliminar_cita(request, codigo_cita):
-    c = {}
-    c['cita'] =  get_object_or_404(Cita, pk=codigo_cita)
-    c['cita'].es_activo = False
-    c['cita'].save()
-    return redirect('citas_t')
- 
+    cita = get_object_or_404(Cita, id=codigo_cita)
+
+    if request.method == 'POST':
+        cita.delete()
+        return redirect('lista_citas')  
+    return render(request, 'cita_general.html', {'cita': cita})
+
+def ver_cita(request, codigo_cita):
+   c = {}
+   c['cita'] =  get_object_or_404(Cita, pk=codigo_cita)
+   return render(request, 'ver_cita.html', c)
+    
+
 
 
 #calendario de citas

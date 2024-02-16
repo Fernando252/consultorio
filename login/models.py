@@ -2,7 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-from bootstrap_datepicker_plus.widgets import DateTimePickerInput
+from django.urls import reverse
+
 
 
 class Abogado(models.Model):
@@ -67,8 +68,23 @@ class Cita(models.Model):
     lugar_cita = models.CharField(max_length=255, blank=True, null=True)
     descripcion = models.TextField(blank=True, null=True)
     fecha_creacion = models.DateTimeField(default=timezone.now)
+    def __str__(self):
+        return f'Cita con {self.abogado.nombre} el {self.fecha_cita}'
+
+    
     def __str__(self) -> str:
-        return f'Cita con {self.abogado.nombrea} el {self.fecha_cita}'
+        return f'{self.pk} - {self.cliente}'
+    
+    def get_absolute_url(self):
+        return reverse('ver_cita', kwargs={'codigo_cita': self.id})
+    def get_edit_url(self):
+        return reverse('editar_citas', kwargs={'codigo_cita': self.id})
+    
+    def get_delete_url(self):
+        return reverse('eliminar_cita', kwargs={'codigo_cita': self.id})
+
+
+
         
    
 class Casos(models.Model):
