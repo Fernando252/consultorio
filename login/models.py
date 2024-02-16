@@ -96,7 +96,7 @@ class Documentos(models.Model):
     # Atributos del documento
     caso = models.ForeignKey(Casos, on_delete=models.CASCADE)
     tipo_documento = models.CharField(max_length=50)
-    fecha_creacion = models.DateField()
+    fecha_creacion = models.DateTimeField(default=timezone.now)
     descripcion_documento = models.TextField()
     archivo_adjunto = models.FileField(upload_to='documentos/', blank=True, )
 

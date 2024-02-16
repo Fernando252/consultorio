@@ -20,7 +20,7 @@
 
 <body>
 
-    <form method="post" action="{% url 'subir_documento' %}" class="container">
+    <form method="post" action="{% url 'subir_documento' %}" enctype="multipart/form-data" class="container">
         {% csrf_token %}
         <div class="row justify-content-center">
             <div class="col-sm-6">
