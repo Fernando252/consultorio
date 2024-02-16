@@ -118,7 +118,7 @@ def registrar_cita(request):
         form = CitaForm()
 
     abogados = Abogado.objects.all()
-    clientes = Abogado.objects.all()
+    clientes = Clientes.objects.all()
     return render(request, 'registrar_cita.html', {'form': form, 'abogados': abogados, 'clientes': clientes})
 
 

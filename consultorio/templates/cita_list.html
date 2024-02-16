@@ -20,17 +20,40 @@
     <script src="{% static 'lib/main.js' %}"></script>
 
     <!-- Scripts de Bootstrap (Popper.js y Bootstrap JS) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
-
 <body>
-    <div id='calendar'></div>
+    <div class="container mt-5">
+       
+        <!-- Calendario FullCalendar con diseño mejorado -->
+        <div id='calendar' class="card p-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3 class="mb-3">Calendario de Citas</h3>
+                    </div>
+                   
+                </div>
+                <hr>
+                <div id="calendar-inner"></div>
+            </div>
+        </div>
 
- 
+        <!-- Formulario para crear cita -->
+        <form method="post" action="{% url 'registrar_cita' %}" target="_blank">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+            
+            <button type="submit" class="btn btn-primary mt-3">Crear Cita</button>
+        </form>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
+            var calendarEl = document.getElementById('calendar-inner');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 events: [
@@ -47,4 +70,5 @@
         });
     </script>
 </body>
+
 </html>
