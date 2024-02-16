@@ -129,15 +129,18 @@ def subir_documento(request):
         form = DocumentoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('index.html')
+            return redirect('index')
     else:
         form = DocumentoForm()
 
     return render(request, 'subir_documento.html', {'form': form})
 
 
-def citas(request):
+
     
+    
+
+def citas_t(request):
     citas = Cita.objects.all()
     contenido = {
         'citas' : citas
