@@ -23,11 +23,14 @@
                 <p class="card-text"><strong>Fecha_Creación:</strong> {{ cita.fecha_creacion }}</p>
 
 
-
-
-
-                <a type="button" href="" class="btn btn-danger">Eliminar</a>
-                <a type="button" href="" class="btn btn-warning">Editar</a>
+                <form method="post" action="{% url 'eliminar_cita' codigo_cita=cita.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+                <form method="post" action="{% url 'editar_cita' codigo_cita=cita.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Editar</button>
+                </form>
 
         </div>
     </div>

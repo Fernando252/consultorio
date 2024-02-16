@@ -42,6 +42,7 @@ class DocumentoForm(forms.ModelForm):
             'descripcion_documento': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'archivo_adjunto': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
+
 class CitaForm1(forms.ModelForm):
     class Meta:
         model = Cita

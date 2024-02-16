@@ -33,10 +33,6 @@
                 <td>
                     <div>
                         <a href="{{ cita.get_absolute_url }}" class="btn btn-primary">Ver Detalles</a>
-                        <form method="post" action="{% url 'eliminar_cita' codigo_cita=cita.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
                     </div>
                   
 
