@@ -48,3 +48,13 @@ class CitaForm1(forms.ModelForm):
         model = Cita
         fields = ['abogado', 'cliente', 'fecha_cita', 'lugar_cita', 'descripcion']
 
+class EditarDocumentoForm(forms.ModelForm):
+    class Meta:
+        model = Documentos
+        fields = ['caso' ,'tipo_documento', 'descripcion_documento', 'archivo_adjunto']
+        widgets = {
+            'caso': forms.Select(attrs={'class': 'form-control'}),
+            'tipo_documento': forms.TextInput(attrs={'class': 'form-control'}),
+            'descripcion_documento': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'archivo_adjunto': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+        }

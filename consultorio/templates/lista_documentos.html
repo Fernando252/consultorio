@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Documentos por cliente</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-8">
+            <h1>Tus Documentos son:{{request.user}}</h1>
+        </div>
+        <div class="col-sm-4">
+            <a href="{% url 'subir_documento'  %}" class="btn btn-primary">Nuevo</a>
+        </div>
+    </div>
+
+<div>
+    <table class="table">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">Caso</th>
+                <th scope="col">Tipo de documento</th>
+                <th scope="col">Descripción</th>
+                <th colspan="2">Opciones</th>
+            </tr>
+        </thead>
+        {% for documento in documentos %}
+        <tbody>
+            <tr>
+                <td>{{documento.caso}}</td>
+                <td>{{documento.tipo_documento}}</td>
+                <td>{{documento.descripcion_documento}}</td>
+                <td><a href="editar_documento/{{c.codigo_documento}}" class ="btn btn-info">Editar</a></td>
+                <td><a href="eliminar_documento/{{ documento.codigo_documento}}" class ="btn btn-danger">Eliminar</a></td>
+             
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>
+{% endblock %}

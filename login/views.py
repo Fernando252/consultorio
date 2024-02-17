@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.hashers import make_password
 from django.db.models import Count
-from .models import Abogado, Casos, Clientes,Cita
+from .models import Abogado, Casos, Clientes,Cita, Documentos
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import CitaForm, DocumentoForm, RegistroClienteForm, CitaForm1
@@ -207,3 +207,12 @@ def editar_cita(request, codigo_cita):
 class CitaListView(ListView):
     model = Cita
     template_name = 'cita_list.html'
+
+def documentos_lista(request):
+    documento = Documentos.objects.all()
+    contenido = {
+        'documentos' : documento
+    }
+    template = "lista_documentos.html"
+    return render(request, template, contenido)
+
